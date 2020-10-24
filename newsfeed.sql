@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS newsfeed;
+USE newsfeed;
+CREATE TABLE IF NOT EXISTS news (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR (100) NOT NULL,
+    news_text TEXT (4000),
+    image VARCHAR (30),
+    timedate DATETIME
+);
+CREATE TABLE IF NOT EXISTS comments (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    author VARCHAR (30),
+    description TEXT (2000),
+    news_id INT NOT NULL,
+    CONSTRAINT FK_news
+    FOREIGN KEY (news_id)
+    REFERENCES news(id)
+    ON DELETE CASCADE        
+    ON UPDATE CASCADE
+);
+
